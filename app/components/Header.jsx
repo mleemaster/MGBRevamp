@@ -39,12 +39,13 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
  
   return (
     <header className="header">
-      <div className='logo'>
-        <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-          <img src="/app/assets/MGBLogo.png" alt={shop.name} />
+
+      <div className='logo-container'>
+        <NavLink id='mgb-logo' prefetch="intent" to="/" end>
+          mulligan
         </NavLink>
       </div>
-
+      
       <div className='leftMenu'>
         <HeaderMenu
           menu = {menu}        

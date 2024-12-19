@@ -59,6 +59,13 @@ export function SearchFormPredictive({
   );
 }
 
+function searchFormStyle() {
+  return {
+    backgroundColor: '#444444',
+    borderRadius: '20px',  
+  }
+}
+
 /**
  * @typedef {(args: {
  *   fetchResults: (event: React.ChangeEvent<HTMLInputElement>) => void;
