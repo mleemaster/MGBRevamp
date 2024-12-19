@@ -186,7 +186,6 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .header-menu-desktop {
-  font-color: #CECCCC;
   margin-left: 10px;
 }
 
