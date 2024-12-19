@@ -2,10 +2,10 @@ import {Suspense} from 'react';
 import {Await, NavLink, useAsyncValue} from '@remix-run/react';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
-import { SearchForm } from '~/components/SearchForm';
 import { AddToCartButton } from '~/components/AddToCartButton';
-import { SearchFormPredictive } from './SearchFormPredictive';
-import { SearchResultsPredictive } from './SearchResultsPredictive';
+import { SearchFormPredictive } from '/app/components/SearchFormPredictive';
+import { SearchResultsPredictive } from '/app/components/SearchResultsPredictive';
+import { SearchFormField } from '~/components/PageLayout';
 
 /**
  * @param {HeaderProps}
@@ -54,40 +54,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
         />
       </div>
 
-      <div className='searchForm'>
-        <SearchFormPredictive>
-          {({ inputRef, fetchResults, fetcher, goToSearch }) => (
-            <>
-              {/* Search Input */}
-                <input
-                  ref={inputRef}
-                  type="text"
-                  placeholder="Search products"
-                  onChange={fetchResults}
-                  className="search-input"
-                />
-
-                <SearchResultsPredictive>
-                  {({ items, closeSearch }) => (
-                    items.length > 0 ? (
-                      items.map((item) => (
-                        <div key={item.id}>
-                          <p>{item.title}</p>
-                          <button onClick={closeSearch}>Close</button>
-                        </div>
-                      ))
-                    ) : (
-                      <div>No results found</div>
-                    )
-                  )}
-                </SearchResultsPredictive>
-
-
-                
-              </>
-              )}
-          </SearchFormPredictive>
-        </div>
+      <SearchFormField/>
 
       <div className='rightMenu'>
         <HeaderMenu
@@ -97,7 +64,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
           publicStoreDomain={publicStoreDomain}
         />
       </div>
-      
+
       <div className='topRightMenu'>
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
       </div>
@@ -170,13 +137,6 @@ function HeaderCtas({isLoggedIn, cart}) {
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
       <CartToggle cart={cart} />
     </nav>
   );
@@ -212,6 +172,7 @@ function CartBadge({count}) {
 
   return (
     <a
+      style={activeLinkStyle()}
       href="/cart"
       onClick={(e) => {
         e.preventDefault();
@@ -296,14 +257,13 @@ const FALLBACK_HEADER_MENU = {
  *   isPending: boolean;
  * }}
  */
-function activeLinkStyle({isActive, isPending}) {
+function activeLinkStyle() {
   return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
+    color: '#CECCCC',
   };
 }
 
-/** @typedef {'desktop' | 'mobile'} Viewport */
+/** @TYPEDEF {'DESKTOP' | 'mobile'} Viewport */
 /**
  * @typedef {Object} HeaderProps
  * @property {HeaderQuery} header
