@@ -2,24 +2,105 @@ import {Suspense} from 'react';
 import {Await, NavLink, useAsyncValue} from '@remix-run/react';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
+import { SearchForm } from '~/components/SearchForm';
+import { AddToCartButton } from '~/components/AddToCartButton';
+import { SearchFormPredictive } from './SearchFormPredictive';
+import { SearchResultsPredictive } from './SearchResultsPredictive';
 
 /**
  * @param {HeaderProps}
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
+  const { openAside } = useAside();
+  const secondMenu = {
+    id: 'gid://shopify/Menu/199655587896',
+    items: [
+      {
+        id: 'gid://shopify/MenuItem/461609500728',
+        resourceId: null,
+        tags: [],
+        title: 'Grading scale',
+        type: 'HTTP',
+        url: '/pages/grading-scale',
+        items: [],
+      },
+      {
+        id: 'gid://shopify/MenuItem/461609533496',
+        resourceId: null,
+        tags: [],
+        title: 'Ball selector',
+        type: 'HTTP',
+        url: '/',
+        items: [],
+      }
+    ],
+  };  
+ 
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      <div className='logo'>
+        <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+          <img src="/app/assets/MGBLogo.png" alt={shop.name} />
+        </NavLink>
+      </div>
+
+      <div className='leftMenu'>
+        <HeaderMenu
+          menu = {menu}        
+          viewport="desktop"
+          primaryDomainUrl={header.shop.primaryDomain.url}
+          publicStoreDomain={publicStoreDomain}
+        />
+      </div>
+
+      <div className='searchForm'>
+        <SearchFormPredictive>
+          {({ inputRef, fetchResults, fetcher, goToSearch }) => (
+            <>
+              {/* Search Input */}
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Search products"
+                  onChange={fetchResults}
+                  className="search-input"
+                />
+
+                <SearchResultsPredictive>
+                  {({ items, closeSearch }) => (
+                    items.length > 0 ? (
+                      items.map((item) => (
+                        <div key={item.id}>
+                          <p>{item.title}</p>
+                          <button onClick={closeSearch}>Close</button>
+                        </div>
+                      ))
+                    ) : (
+                      <div>No results found</div>
+                    )
+                  )}
+                </SearchResultsPredictive>
+
+
+                
+              </>
+              )}
+          </SearchFormPredictive>
+        </div>
+
+      <div className='rightMenu'>
+        <HeaderMenu
+          menu={secondMenu}
+          viewport='desktop'
+          primaryDomainUrl={header.shop.primaryDomain.url}
+          publicStoreDomain={publicStoreDomain}
+        />
+      </div>
+      
+      <div className='topRightMenu'>
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </div>
     </header>
   );
 }
@@ -96,7 +177,6 @@ function HeaderCtas({isLoggedIn, cart}) {
           </Await>
         </Suspense>
       </NavLink>
-      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );
@@ -118,7 +198,7 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      Search balls
     </button>
   );
 }
