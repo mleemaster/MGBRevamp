@@ -308,6 +308,14 @@ button.reset:hover:not(:has(> *)) {
   height: 30px;
 }
 
+.predictive-search-form input {
+  font-family: 'Krona';
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #000;
+}
+
 .predictive-search-result {
   background-color: #444444;
   border-radius: 20px;
