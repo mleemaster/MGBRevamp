@@ -52,7 +52,7 @@ export function SearchFormPredictive({
     return null;
   }
 
-  return (
+  return (  
     <fetcher.Form {...props} className={className} onSubmit={resetInput}>
       {children({inputRef, fetcher, fetchResults, goToSearch})}
     </fetcher.Form>

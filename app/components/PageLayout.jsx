@@ -67,6 +67,13 @@ export function SearchFormField() {
       <SearchFormPredictive>
         {({fetchResults, goToSearch, inputRef}) => (
           <>
+          <div className='predictive-search-input-container'>
+            <img
+              src="path-to-your-icon/spyglass.svg"
+              alt="Search"
+              id ='search-icon'
+            />
+          
             <input
               name="q"
               onChange={fetchResults}
@@ -76,8 +83,8 @@ export function SearchFormField() {
               type="search"
               list={queriesDatalistId}
             />
-            &nbsp;
-          </>
+          </div>
+        </>
         )}
       </SearchFormPredictive>
 
@@ -86,7 +93,7 @@ export function SearchFormField() {
           const {articles, collections, pages, products, queries} = items;
 
           if (state === 'loading' && term.current) {
-            return <div>Loading...</div>;
+            /* return <div>Loading...</div>; */
           }
 
           if (!total) {

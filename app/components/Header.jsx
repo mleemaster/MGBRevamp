@@ -45,7 +45,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
           mulligan
         </NavLink>
       </div>
-      
+
       <div className='leftMenu'>
         <HeaderMenu
           menu = {menu}        
@@ -159,7 +159,7 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search balls
+      Search
     </button>
   );
 }
@@ -173,7 +173,7 @@ function CartBadge({count}) {
 
   return (
     <a
-      style={activeLinkStyle()}
+      /*style={activeLinkStyle()}*/
       href="/cart"
       onClick={(e) => {
         e.preventDefault();
@@ -254,14 +254,14 @@ const FALLBACK_HEADER_MENU = {
 
 /**
  * @param {{
- *   isActive: boolean;
- *   isPending: boolean;
- * }}
- */
-function activeLinkStyle() {
-  return {
-    color: '#CECCCC',
-  };
+*   isActive: boolean;
+*   isPending: boolean;
+* }}
+*/
+function activeLinkStyle({isActive, isPending}) {
+ return {
+   color: isActive ? '#FFFFFF' : '#8E8E8E',
+ };
 }
 
 /** @TYPEDEF {'DESKTOP' | 'mobile'} Viewport */

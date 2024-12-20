@@ -5,12 +5,13 @@
   --grid-item-width: 355px;
   --header-height: 80px;
   --color-dark: #000;
+  --color-background: #131313;
   --color-light: #fff;
 }
 
 @font-face {
-  font-family: 'Krona';
-  src: url(/app/assets/KronaOne-Regular.ttf);
+  font-family: 'Hubot';
+  src: url(/app/assets/MerriweatherSans-Regular.ttf);
 }
 
 @font-face {
@@ -168,12 +169,13 @@ button.reset:hover:not(:has(> *)) {
 */
 .header {
   align-items: center;
-  background: #282828;
+  background: var(--color-background);
   display: flex;
-  height: 60px;
-  font-family: 'Krona';
-  font-size: 13px;  
-  color: #CECCCC;
+  height: 70px;
+  font-family: 'Hubot';
+  font-size: 16px; 
+  font-weight: 10;
+  color: #8E8E8E;
 }
 
 .header-menu-mobile-toggle {
@@ -196,9 +198,17 @@ button.reset:hover:not(:has(> *)) {
   margin: 0px 10px 0px 10px;
 }
 
+.header-menu-item:hover {
+  color: white;
+}
+
 .topRightMenu {
   margin-left: auto;
   margin-right: 20px;
+}
+
+.logo-container {
+  margin-bottom: 9px;
 }
 
 #mgb-logo {
@@ -293,14 +303,17 @@ button.reset:hover:not(:has(> *)) {
 */
 .predictive-search {
   z-index: 1;
-  font-family: 'Krona';
-  font-size: 13px;
+  font-family: 'Hubot';
+  font-size: 16px;
   position: relative;
   width: 400px;
+  margin-left: 8px;
 }
 
 .predictive-search-form {
-  background: #444444;
+  display: flex;
+  align-items: center;
+  background: #1b1b1b;
   border-radius: 30px;
   position: relative;
   top: 0;
@@ -309,15 +322,21 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .predictive-search-form input {
-  font-family: 'Krona';
+  font-family: 'Hubot';
+  font-size: 16px;
+  line-height: 16px;
+  height: 100%;
   background-color: transparent;
   border: none;
   outline: none;
-  color: #000;
+  color: #ffffff;
+  box-sizing: border-box;
+  margin-top: 8.75px;
+  margin-left: 4px;
 }
 
 .predictive-search-result {
-  background-color: #444444;
+  background-color: #1b1b1b;
   border-radius: 20px;
   position: absolute;
   top: 0;
