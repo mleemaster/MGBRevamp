@@ -64,30 +64,29 @@ export function SearchFormField() {
   const queriesDatalistId = useId();
   return (
     <div className="predictive-search">
-      <SearchFormPredictive>
-        {({fetchResults, goToSearch, inputRef}) => (
-          <>
-          <div className='predictive-search-input-container'>
-            <img
-              src="/app/assets/SearchIcon8E.png"
-              alt="Search"
-              id ='search-icon'
-            />
-          
-            <input
-              name="q"
-              onChange={fetchResults}
-              onFocus={fetchResults}
-              placeholder="Search products"
-              ref={inputRef}
-              type="search"
-              list={queriesDatalistId}
-            />
-          </div>
-        </>
-        )}
-      </SearchFormPredictive>
-
+        <SearchFormPredictive>
+          {({fetchResults, goToSearch, inputRef}) => (
+            <>
+            <div className='predictive-search-input-container'>
+              <img
+                src="/app/assets/SearchIcon8E.png"
+                alt="Search"
+                id ='search-icon'
+              />
+            
+              <input
+                name="q"
+                onChange={fetchResults}
+                onFocus={fetchResults}
+                placeholder="Search products"
+                ref={inputRef}
+                type="search"
+                list={queriesDatalistId}
+              />
+            </div>
+          </>
+          )}
+        </SearchFormPredictive>
       <SearchResultsPredictive>
         {({items, total, term, state, closeSearch}) => {
           const {articles, collections, pages, products, queries} = items;

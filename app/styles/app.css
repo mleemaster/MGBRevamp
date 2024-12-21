@@ -23,14 +23,33 @@ img {
   border-radius: 4px;
 }
 
+/* For the document */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto; /* Ensure scrolling is enabled */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar in IE 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari, Edge */
+}
+
 /*
 * --------------------------------------------------
 * Non anchor links
 * --------------------------------------------------
 */
 .link:hover {
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+}
+
+.header-menu-item:hover {
+  text-decoration: none;
+  color: white !important;
 }
 
 /*
@@ -169,12 +188,12 @@ button.reset:hover:not(:has(> *)) {
 * --------------------------------------------------
 */
 .header {
+  display: flex;
   align-items: center;
   background: var(--color-background);
-  display: flex;
   height: 70px;
   font-family: 'Merri';
-  font-size: 16px; 
+  font-size: 16px;
   color: #8E8E8E;
 }
 
@@ -190,29 +209,31 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .header-menu-desktop {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .header-menu-item {
   cursor: pointer;
-  margin: 0px 10px 0px 10px;
+  margin-left: 20px;
 }
 
 .leftMenu {
-  margin-left: 8px;
-}
-
-.topRightMenu {
-  margin-left: auto;
-  margin-right: 20px;
+  margin-right: auto;
+  margin-left: 20px;
 }
 
 .rightMenu {
-  margin-left: 20px;
+  margin-left: auto;
+}
+
+.topRightMenu {
+  margin-left: 40px;
+  margin-right: 20px;
 }
 
 .logo-container {
   margin-bottom: 9px;
+  margin-left: 20px;
 }
 
 #mgb-logo {
@@ -221,7 +242,6 @@ button.reset:hover:not(:has(> *)) {
   background-image: linear-gradient(100deg, #125200, #FF0000, #125200, #FF0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-left: 15px;
 }
 
 /*
@@ -319,7 +339,7 @@ button.reset:hover:not(:has(> *)) {
   font-size: 16px;
   position: relative;
   width: 400px;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .predictive-search-form {
@@ -331,8 +351,8 @@ button.reset:hover:not(:has(> *)) {
   position: relative;
   top: 0;
   z-index: 1;
-  height: 30px;
-  width: 400px;
+  height: 35px;
+  width: inherit;
 }
 
 .predictive-search-form input {
@@ -340,7 +360,6 @@ button.reset:hover:not(:has(> *)) {
   font-size: 14px;
   line-height: 14px;
   height: 100%;
-  width: var();
   background-color: transparent;
   border: none;
   outline: none;
@@ -353,7 +372,12 @@ button.reset:hover:not(:has(> *)) {
 .predictive-search-form input::placeholder {
   font-family: 'Merri';
   font-size: 15px;
-  color: #585858;
+  color: #969696;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .predictive-search-input-container {
@@ -372,6 +396,7 @@ button.reset:hover:not(:has(> *)) {
   top: 0;
   width: 100%;
   z-index: 0;
+  min-height: 35px;
 }
 
 .predictive-search-result h5 {

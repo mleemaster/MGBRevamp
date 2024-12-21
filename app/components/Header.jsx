@@ -45,7 +45,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
           mulligan
         </NavLink>
       </div>
-
+      
       <div className='leftMenu'>
         <HeaderMenu
           menu = {menu}        
@@ -55,16 +55,16 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
         />
       </div>
 
-      <SearchFormField/>
+        <SearchFormField/>
 
-      <div className='rightMenu'>
-        <HeaderMenu
-          menu={secondMenu}
-          viewport='desktop'
-          primaryDomainUrl={header.shop.primaryDomain.url}
-          publicStoreDomain={publicStoreDomain}
-        />
-      </div>
+        <div className='rightMenu'>
+          <HeaderMenu
+            menu={secondMenu}
+            viewport='desktop'
+            primaryDomainUrl={header.shop.primaryDomain.url}
+            publicStoreDomain={publicStoreDomain}
+          />
+        </div>
 
       <div className='topRightMenu'>
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
