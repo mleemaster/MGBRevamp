@@ -75,7 +75,6 @@ export function SearchFormField() {
             />
           
             <input
-              id='search-input-box'
               name="q"
               onChange={fetchResults}
               onFocus={fetchResults}
