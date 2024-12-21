@@ -10,7 +10,7 @@
 }
 
 @font-face {
-  font-family: 'Hubot';
+  font-family: 'Merri';
   src: url(/app/assets/MerriweatherSans-Regular.ttf);
 }
 
@@ -29,6 +29,7 @@ img {
 * --------------------------------------------------
 */
 .link:hover {
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -172,9 +173,8 @@ button.reset:hover:not(:has(> *)) {
   background: var(--color-background);
   display: flex;
   height: 70px;
-  font-family: 'Hubot';
+  font-family: 'Merri';
   font-size: 16px; 
-  font-weight: 10;
   color: #8E8E8E;
 }
 
@@ -196,10 +196,6 @@ button.reset:hover:not(:has(> *)) {
 .header-menu-item {
   cursor: pointer;
   margin: 0px 10px 0px 10px;
-}
-
-.header-menu-item:hover {
-  color: white;
 }
 
 .topRightMenu {
@@ -228,7 +224,7 @@ button.reset:hover:not(:has(> *)) {
 .footer {
   background: var(--color-dark);
   margin-top: auto;
-  font-family: 'Krona';
+  font-family: 'Merri';
 }
 
 .footer-menu {
@@ -296,6 +292,14 @@ button.reset:hover:not(:has(> *)) {
   align-items: center;
   display: flex;
 }
+
+.golf-cart-icon {
+  width: 54px;
+  height: 54px;
+  margin-top: 6px;
+  margin-right: 3px;
+}
+
 /*
 * --------------------------------------------------
 * components/Search
@@ -303,7 +307,7 @@ button.reset:hover:not(:has(> *)) {
 */
 .predictive-search {
   z-index: 1;
-  font-family: 'Hubot';
+  font-family: 'Merri';
   font-size: 16px;
   position: relative;
   width: 400px;
@@ -315,6 +319,7 @@ button.reset:hover:not(:has(> *)) {
   align-items: center;
   background: #1b1b1b;
   border-radius: 30px;
+  border: 1.2px solid #2b2b2b;
   position: relative;
   top: 0;
   z-index: 1;
@@ -322,7 +327,7 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .predictive-search-form input {
-  font-family: 'Hubot';
+  font-family: 'Merri';
   font-size: 16px;
   line-height: 16px;
   height: 100%;
@@ -335,9 +340,15 @@ button.reset:hover:not(:has(> *)) {
   margin-left: 4px;
 }
 
+.predictive-search-form input::placeholder {
+  font-family: 'Merri';
+  color: #585858;
+}
+
 .predictive-search-result {
   background-color: #1b1b1b;
   border-radius: 20px;
+  border: 1.2px solid #2b2b2b;
   position: absolute;
   top: 0;
   width: 100%;

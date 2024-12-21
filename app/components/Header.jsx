@@ -173,7 +173,7 @@ function CartBadge({count}) {
 
   return (
     <a
-      /*style={activeLinkStyle()}*/
+      id='cart-badge'
       href="/cart"
       onClick={(e) => {
         e.preventDefault();
@@ -186,7 +186,9 @@ function CartBadge({count}) {
         });
       }}
     >
-      Cart {count === null ? <span>&nbsp;</span> : count}
+      <img src="/app/assets/CartIcon.png" className='golf-cart-icon'/> 
+      
+      
     </a>
   );
 }

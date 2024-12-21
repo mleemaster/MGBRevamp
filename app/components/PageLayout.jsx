@@ -69,12 +69,13 @@ export function SearchFormField() {
           <>
           <div className='predictive-search-input-container'>
             <img
-              src="path-to-your-icon/spyglass.svg"
+              src="/app/assets/SearchIcon8E.png"
               alt="Search"
               id ='search-icon'
             />
           
             <input
+              id='search-input-box'
               name="q"
               onChange={fetchResults}
               onFocus={fetchResults}
