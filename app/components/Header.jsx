@@ -6,6 +6,7 @@ import { AddToCartButton } from '~/components/AddToCartButton';
 import { SearchFormPredictive } from '/app/components/SearchFormPredictive';
 import { SearchResultsPredictive } from '/app/components/SearchResultsPredictive';
 import { SearchFormField } from '~/components/PageLayout';
+import { DropdownMenu } from './DropdownMenu';
 
 /**
  * @param {HeaderProps}
@@ -81,6 +82,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
  *   publicStoreDomain: HeaderProps['publicStoreDomain'];
  * }}
  */
+
 export function HeaderMenu({
   menu,
   primaryDomainUrl,
@@ -88,7 +90,7 @@ export function HeaderMenu({
   publicStoreDomain,
 }) {
   const className = `header-menu-${viewport}`;
-  const {close} = useAside();
+  const { close } = useAside();
 
   return (
     <nav className={className} role="navigation">
@@ -103,29 +105,50 @@ export function HeaderMenu({
           Home
         </NavLink>
       )}
+
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
 
-        // if the url is internal, we strip the domain
         const url =
           item.url.includes('myshopify.com') ||
           item.url.includes(publicStoreDomain) ||
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
+
+        if (item.title === 'By brands') {
+          return (
+            <DropdownMenu
+              key={item.id}
+              buttonName={item.title}
+              className={'by-brand-dropdown'}
+              items={[
+                { name: 'Titleist', href: '/collections/titleist' },
+                { name: 'Callaway', href: '/collections/callaway' },
+                { name: 'TaylorMade', href: '/collections/taylormade' },
+                { name: 'Bridgestone', href: '/collections/bridgestone' },
+                { name: 'Vice', href: '/collections/vice' },
+                { name: 'Srixon', href: '/collections/srixon' },
+                { name: 'Nike', href: '/collections/nike' },
+                { name: 'ProV', href: '/collections/prov' },
+              ]}
+            />
+          );
+        } else {
+          return (
+            <NavLink
+              className="header-menu-item"
+              end
+              key={item.id}
+              onClick={close}
+              prefetch="intent"
+              style={activeLinkStyle}
+              to={url}
+            >
+              {item.title}
+            </NavLink>
+          );
+        }
       })}
     </nav>
   );
